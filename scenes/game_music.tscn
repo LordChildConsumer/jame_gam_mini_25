@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhrk4k115b6n2"]
+
+[ext_resource type="AudioStream" uid="uid://bme2a73t10485" path="res://Music/music_zapsplat_game_music_action_fun_funky_electro_disco_023.mp3" id="1_3rf0v"]
+
+[node name="GameMusic" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_3rf0v")
+volume_db = -8.0
+autoplay = true

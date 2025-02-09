@@ -14,6 +14,10 @@ config/name="JameGamMini25"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameMusic="*res://scenes/game_music.tscn"
+
 [display]
 
 window/size/viewport_width=1920

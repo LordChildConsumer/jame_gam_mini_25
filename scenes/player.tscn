@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=3 uid="uid://byucq52d1ot21"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_rybxp"]
+[ext_resource type="Texture2D" uid="uid://d3sragkpas1r8" path="res://Tiny Bard Art/Characters 254px.png" id="2_1rt15"]
+[ext_resource type="AudioStream" uid="uid://ktavod6n3an8" path="res://SFX/old_man_laugh.wav" id="3_v5vnw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scktq"]
+atlas = ExtResource("2_1rt15")
+region = Rect2(0, 508, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuydq"]
+atlas = ExtResource("2_1rt15")
+region = Rect2(0, 762, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41uov"]
+atlas = ExtResource("2_1rt15")
+region = Rect2(254, 508, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7g5h0"]
+atlas = ExtResource("2_1rt15")
+region = Rect2(254, 762, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2stcw"]
+atlas = ExtResource("2_1rt15")
+region = Rect2(508, 508, 254, 254)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2o4u"]
+atlas = ExtResource("2_1rt15")
+region = Rect2(508, 762, 254, 254)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vvmhh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scktq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuydq")
+}],
+"loop": true,
+"name": &"down",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41uov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7g5h0")
+}],
+"loop": true,
+"name": &"side",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2stcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2o4u")
+}],
+"loop": true,
+"name": &"up",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlqfq"]
+radius = 45.0
+height = 190.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h7dpj"]
+radius = 57.0
+height = 214.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+visible = false
+collision_mask = 3
+script = ExtResource("1_rybxp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-16, 0)
+sprite_frames = SubResource("SpriteFrames_vvmhh")
+animation = &"side"
+frame = 1
+frame_progress = 0.370964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hlqfq")
+
+[node name="DeathCollider" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathCollider"]
+shape = SubResource("CapsuleShape2D_h7dpj")
+debug_color = Color(0.847985, 0.0960761, 0.872005, 0.42)
+
+[node name="laugh_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_v5vnw")
+volume_db = -10.0
+
+[node name="LaughTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="DeathCollider" to="." method="_on_death_collider_body_entered"]
+[connection signal="timeout" from="LaughTimer" to="." method="_on_laugh_timer_timeout"]

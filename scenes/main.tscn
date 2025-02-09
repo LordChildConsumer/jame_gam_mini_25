@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmy132vxonaib"]
+
+[ext_resource type="PackedScene" uid="uid://byucq52d1ot21" path="res://scenes/player.tscn" id="1_3v323"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_nqe4a"]
+[ext_resource type="Texture2D" uid="uid://d0bmkmby2rf7l" path="res://Tiny Bard Art/Background.png" id="2_n1go6"]
+[ext_resource type="PackedScene" uid="uid://4egneeigstm6" path="res://ui.tscn" id="4_bjtm4"]
+[ext_resource type="PackedScene" uid="uid://d2mjce8kte8x4" path="res://graves.tscn" id="4_sq4bw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct01r"]
+size = Vector2(3840, 260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_146gg"]
+size = Vector2(1040, 2680)
+
+[sub_resource type="Curve2D" id="Curve2D_fcib8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1904, -1072, 0, 0, 0, 0, 1928, -1072, 0, 0, 0, 0, 1928, 1096, 0, 0, 0, 0, -1912, 1080, 0, 0, 0, 0, -1904, -1072)
+}
+point_count = 5
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_nqe4a")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.764706)
+position = Vector2(0.888916, -10)
+scale = Vector2(1.55926, 1.55926)
+texture = ExtResource("2_n1go6")
+
+[node name="Graves" parent="." instance=ExtResource("4_sq4bw")]
+position = Vector2(200, -328)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.65, 0.65)
+
+[node name="StartPosition" type="Marker2D" parent="."]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -848)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(0, -133)
+shape = SubResource("RectangleShape2D_ct01r")
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 1112)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+position = Vector2(0, -133)
+shape = SubResource("RectangleShape2D_ct01r")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(3216, 120)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(-1208, -120)
+shape = SubResource("RectangleShape2D_146gg")
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-2008, 112)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(0, -116)
+shape = SubResource("RectangleShape2D_146gg")
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_fcib8")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-1904, -1072)
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="GreenMobTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="UI" parent="." instance=ExtResource("4_bjtm4")]
+
+[node name="Player" parent="." instance=ExtResource("1_3v323")]
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="GreenMobTimer" to="." method="_on_green_mob_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="UI" to="." method="_on_ui_start_game"]
+[connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
