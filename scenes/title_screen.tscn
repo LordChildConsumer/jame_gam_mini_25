@@ -1,10 +1,36 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuvmoteu7gffo"]
+[gd_scene load_steps=8 format=3 uid="uid://cuvmoteu7gffo"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_ln31a"]
 [ext_resource type="Texture2D" uid="uid://bswp3p0vjetbm" path="res://Tiny Bard Art/Title Screen.png" id="2_bff5t"]
-[ext_resource type="PackedScene" uid="uid://dhrk4k115b6n2" path="res://scenes/game_music.tscn" id="3_qc7so"]
 [ext_resource type="Texture2D" uid="uid://bn8yunlp3kfwu" path="res://Tiny Bard Art/Play Button.png" id="3_rngqf"]
 [ext_resource type="FontFile" uid="uid://cgfpe8yk77myt" path="res://Fonts/chinese rocks rg.otf" id="5_hwp3v"]
+
+[sub_resource type="Animation" id="Animation_lcoso"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnterToStartLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.607843)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnterToStartLabel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(672.5, 800)]
+}
 
 [sub_resource type="Animation" id="Animation_v7cwy"]
 resource_name = "hit enter to start"
@@ -32,34 +58,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(803, 932), Vector2(803, 897), Vector2(803, 932)]
-}
-
-[sub_resource type="Animation" id="Animation_lcoso"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnterToStartLabel:theme_override_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.607843)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnterToStartLabel:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(803, 768)]
+"values": [Vector2(672.5, 800), Vector2(672.5, 780), Vector2(672.5, 800)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sx5xr"]
@@ -87,6 +86,7 @@ grow_vertical = 2
 texture = ExtResource("2_bff5t")
 
 [node name="StartButton" type="TextureButton" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -103,8 +103,6 @@ texture_normal = ExtResource("3_rngqf")
 texture_pressed = ExtResource("3_rngqf")
 texture_hover = ExtResource("3_rngqf")
 
-[node name="GameMusic" parent="." instance=ExtResource("3_qc7so")]
-
 [node name="EnterToStartLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -112,15 +110,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -157.0
-offset_top = -312.0
-offset_right = 157.0
-offset_bottom = -256.0
+offset_left = -287.5
+offset_top = -280.0
+offset_right = 287.5
+offset_bottom = -184.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 0.607843)
 theme_override_fonts/font = ExtResource("5_hwp3v")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 80
 text = "hit enter to start"
 horizontal_alignment = 1
 

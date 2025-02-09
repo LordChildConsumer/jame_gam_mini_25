@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ihu2f0ix3irn"]
+
+[ext_resource type="AudioStream" uid="uid://dc70xcbbk144n" path="res://SFX/zapsplat_fantasy_magic_whoosh_dark_spell_project_whizz_001_106384.mp3" id="1_hxoaw"]
+[ext_resource type="Script" path="res://scripts/whiz_sound.gd" id="2_exflo"]
+
+[node name="WhizSound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_hxoaw")
+script = ExtResource("2_exflo")

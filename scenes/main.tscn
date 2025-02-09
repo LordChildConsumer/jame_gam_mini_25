@@ -1,10 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmy132vxonaib"]
+[gd_scene load_steps=12 format=3 uid="uid://cmy132vxonaib"]
 
 [ext_resource type="PackedScene" uid="uid://byucq52d1ot21" path="res://scenes/player.tscn" id="1_3v323"]
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_nqe4a"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_nqe4a"]
 [ext_resource type="Texture2D" uid="uid://d0bmkmby2rf7l" path="res://Tiny Bard Art/Background.png" id="2_n1go6"]
-[ext_resource type="PackedScene" uid="uid://4egneeigstm6" path="res://ui.tscn" id="4_bjtm4"]
-[ext_resource type="PackedScene" uid="uid://d2mjce8kte8x4" path="res://graves.tscn" id="4_sq4bw"]
+[ext_resource type="Texture2D" uid="uid://b8mk3giwfn3v2" path="res://Tiny Bard Art/Background 254px.png" id="3_es567"]
+[ext_resource type="PackedScene" uid="uid://4egneeigstm6" path="res://scenes/ui.tscn" id="4_bjtm4"]
+[ext_resource type="PackedScene" uid="uid://brpjuiyestnub" path="res://scenes/score_sprite.tscn" id="4_ksen5"]
+[ext_resource type="PackedScene" uid="uid://d2mjce8kte8x4" path="res://scenes/graves.tscn" id="4_sq4bw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnd4v"]
+atlas = ExtResource("3_es567")
+region = Rect2(609, 338, 347, 392)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ct01r"]
 size = Vector2(3840, 260)
@@ -23,15 +29,81 @@ script = ExtResource("1_nqe4a")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.764706)
-position = Vector2(0.888916, -10)
-scale = Vector2(1.55926, 1.55926)
+position = Vector2(-8.44447, -1.52588e-05)
+scale = Vector2(1.67546, 1.7037)
 texture = ExtResource("2_n1go6")
+
+[node name="Trees" type="Node2D" parent="."]
+
+[node name="Tree" type="Sprite2D" parent="Trees"]
+position = Vector2(1576, 120)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree2" type="Sprite2D" parent="Trees"]
+position = Vector2(-72, -1024)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree3" type="Sprite2D" parent="Trees"]
+position = Vector2(-864, -1024)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree4" type="Sprite2D" parent="Trees"]
+position = Vector2(672, -1016)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree5" type="Sprite2D" parent="Trees"]
+position = Vector2(1056, -1016)
+scale = Vector2(-1, 1)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree6" type="Sprite2D" parent="Trees"]
+position = Vector2(360, -1016)
+scale = Vector2(-1, 1)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree7" type="Sprite2D" parent="Trees"]
+position = Vector2(-1256, -1008)
+scale = Vector2(-1, 1)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree8" type="Sprite2D" parent="Trees"]
+position = Vector2(-1616, -648)
+scale = Vector2(-1, 1)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree9" type="Sprite2D" parent="Trees"]
+position = Vector2(-1624, -40)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree10" type="Sprite2D" parent="Trees"]
+position = Vector2(1616, -480)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree11" type="Sprite2D" parent="Trees"]
+position = Vector2(1600, -856)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree12" type="Sprite2D" parent="Trees"]
+position = Vector2(1360, -1016)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree13" type="Sprite2D" parent="Trees"]
+position = Vector2(-472, -1032)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree14" type="Sprite2D" parent="Trees"]
+position = Vector2(-1568, -976)
+texture = SubResource("AtlasTexture_gnd4v")
+
+[node name="Tree15" type="Sprite2D" parent="Trees"]
+position = Vector2(-1600, 608)
+texture = SubResource("AtlasTexture_gnd4v")
 
 [node name="Graves" parent="." instance=ExtResource("4_sq4bw")]
 position = Vector2(200, -328)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.65, 0.65)
+zoom = Vector2(0.6, 0.6)
 
 [node name="StartPosition" type="Marker2D" parent="."]
 
@@ -43,7 +115,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
-position = Vector2(0, -133)
+position = Vector2(0, -104)
 shape = SubResource("RectangleShape2D_ct01r")
 
 [node name="BottomWall" type="StaticBody2D" parent="Walls"]
@@ -84,16 +156,44 @@ position = Vector2(-1904, -1072)
 [node name="GreenMobTimer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="YellowMobTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="PurpleMobtimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
+[node name="GemSpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [node name="UI" parent="." instance=ExtResource("4_bjtm4")]
+
+[node name="Gem" parent="." instance=ExtResource("4_ksen5")]
+position = Vector2(-32, -336)
+
+[node name="Gem2" parent="." instance=ExtResource("4_ksen5")]
+position = Vector2(192, -520)
+
+[node name="Gem3" parent="." instance=ExtResource("4_ksen5")]
+position = Vector2(448, -328)
 
 [node name="Player" parent="." instance=ExtResource("1_3v323")]
 
+[node name="ForegroundTrees" type="Node2D" parent="."]
+
+[node name="Tree" type="Sprite2D" parent="ForegroundTrees"]
+position = Vector2(-776, 928)
+texture = SubResource("AtlasTexture_gnd4v")
+
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="GreenMobTimer" to="." method="_on_green_mob_timer_timeout"]
+[connection signal="timeout" from="YellowMobTimer" to="." method="_on_yellow_mob_timer_timeout"]
+[connection signal="timeout" from="PurpleMobtimer" to="." method="_on_purple_mobtimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="GemSpawnTimer" to="." method="_on_gem_spawn_timer_timeout"]
 [connection signal="start_game" from="UI" to="." method="_on_ui_start_game"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
+[connection signal="gem_collected" from="Player" to="." method="_on_player_gem_collected"]

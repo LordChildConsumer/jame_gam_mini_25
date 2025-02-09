@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://byh1j42rtnkvc"]
 
-[ext_resource type="Script" path="res://scenes/green_mob.gd" id="1_3v6r0"]
+[ext_resource type="Script" path="res://scripts/green_mob.gd" id="1_3v6r0"]
 [ext_resource type="Texture2D" uid="uid://d3sragkpas1r8" path="res://Tiny Bard Art/Characters 254px.png" id="2_ffvao"]
 [ext_resource type="AudioStream" uid="uid://e48nl7gshy0o" path="res://SFX/Poison_1.mp3" id="3_jsrts"]
 
@@ -81,8 +81,6 @@ max_speed = 600.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dkxpj")
 animation = &"down"
-frame = 1
-frame_progress = 0.923982
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_y2vni")

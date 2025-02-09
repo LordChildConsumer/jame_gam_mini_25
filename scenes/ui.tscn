@@ -1,0 +1,280 @@
+[gd_scene load_steps=7 format=3 uid="uid://4egneeigstm6"]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_evcx0"]
+[ext_resource type="FontFile" uid="uid://cgfpe8yk77myt" path="res://Fonts/chinese rocks rg.otf" id="1_txrkj"]
+[ext_resource type="Texture2D" uid="uid://d0bmkmby2rf7l" path="res://Tiny Bard Art/Background.png" id="2_oi2je"]
+
+[sub_resource type="Animation" id="Animation_lcoso"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnterToStartLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.607843)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnterToStartLabel:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(690.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnterToStartLabel:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(900, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_v7cwy"]
+resource_name = "hit enter to start"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnterToStartLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.607843), Color(0.91637, 0.691911, 1, 1), Color(1, 1, 1, 0.607843)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnterToStartLabel:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(690.5, -0.25, 0, 0.25, 0, 690.5, -0.25, 0, 0.25, 0, 690.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnterToStartLabel:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(900, -0.25, 0, 0.25, 0, 875, -0.25, 0, 0.25, 0, 900, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sx5xr"]
+_data = {
+"RESET": SubResource("Animation_lcoso"),
+"hit enter to start": SubResource("Animation_v7cwy")
+}
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_evcx0")
+
+[node name="HighScore" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 160.0
+offset_right = 20.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="TextureRect" parent="HighScore"]
+modulate = Color(0.223103, 0.223103, 0.223103, 0.709804)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -940.0
+offset_top = -700.0
+offset_right = 940.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oi2je")
+
+[node name="HighScoreLabel" type="Label" parent="HighScore"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = -420.0
+offset_right = 88.0
+offset_bottom = -117.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_txrkj")
+theme_override_font_sizes/font_size = 40
+text = "1. abc ... 54
+2. jim ... 23
+3. ali ... 10
+4. fra ... 9
+5. sam ... 6"
+horizontal_alignment = 1
+
+[node name="HighScoreTitleLabel" type="Label" parent="HighScore"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = -500.0
+offset_right = 133.0
+offset_bottom = -428.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.915703, 0.740828, 0.892388, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_txrkj")
+theme_override_font_sizes/font_size = 60
+text = "highscores"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="HighScore"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -28.0
+offset_right = 100.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_txrkj")
+theme_override_font_sizes/font_size = 40
+alignment = 1
+max_length = 3
+caret_blink = true
+
+[node name="EnterHighScoreLabel" type="Label" parent="HighScore"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -88.0
+offset_right = 193.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.933427, 0.841372, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_txrkj")
+theme_override_font_sizes/font_size = 45
+text = "Enter name
+
+press enter to submit"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 129.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0.98674, 0.794925, 0.429901, 1)
+theme_override_fonts/font = ExtResource("1_txrkj")
+theme_override_font_sizes/font_size = 65
+text = "Score"
+
+[node name="MessageLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -78.5
+offset_right = 157.0
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.922512, 0.831404, 0.984677, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("1_txrkj")
+theme_override_font_sizes/font_size = 64
+text = "Wasd or arrow keys to move
+dont get surrounded"
+horizontal_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="RetryButton" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -352.0
+offset_right = 100.0
+offset_bottom = -272.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_txrkj")
+theme_override_font_sizes/font_size = 50
+text = "lets go"
+
+[node name="EnterToStartLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -269.5
+offset_top = -180.0
+offset_right = 269.5
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.607843)
+theme_override_fonts/font = ExtResource("1_txrkj")
+theme_override_font_sizes/font_size = 75
+text = "hit enter to start"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sx5xr")
+}
+autoplay = "hit enter to start"
+
+[connection signal="text_changed" from="HighScore/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="HighScore/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
