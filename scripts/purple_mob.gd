@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-@export var min_speed : float = 400
-@export var max_speed : float = 600
+@export var min_speed : float = 450
+@export var max_speed : float = 550
 
 @export var rotation_speed : float = 2.5
 
@@ -45,10 +45,12 @@ func _physics_process(delta: float) -> void:
 
 func _on_detection_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		animated_sprite.self_modulate = Color("#e476ac")
 		aggro_sound.play()
 		target = body
 
 
 func _on_detection_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		animated_sprite.self_modulate = Color("#FFFFFF")
 		target = null

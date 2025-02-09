@@ -1,6 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://brpjuiyestnub"]
+[gd_scene load_steps=6 format=3 uid="uid://brpjuiyestnub"]
 
-[ext_resource type="Texture2D" uid="uid://bnoopd8pj7cgb" path="res://platformPack_item008.png" id="1_gt2d7"]
+[ext_resource type="Texture2D" uid="uid://buikonxljpwws" path="res://Tiny Bard Art/Collectibles.PNG" id="1_5qd3x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hj2p"]
+atlas = ExtResource("1_5qd3x")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qex1t"]
+atlas = ExtResource("1_5qd3x")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1ow5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hj2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qex1t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lgdpg"]
 radius = 24.0
@@ -9,8 +31,11 @@ radius = 24.0
 collision_layer = 4
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_gt2d7")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_t1ow5")
+autoplay = "default"
+frame_progress = 0.354471
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lgdpg")

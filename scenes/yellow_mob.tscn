@@ -69,7 +69,7 @@ radius = 64.0
 height = 128.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d4uxm"]
-radius = 416.077
+radius = 808.0
 
 [node name="YellowMob" type="RigidBody2D" groups=["mob"]]
 collision_mask = 0

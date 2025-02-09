@@ -30,7 +30,7 @@ script = ExtResource("1_nqe4a")
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.764706)
 position = Vector2(-8.44447, -1.52588e-05)
-scale = Vector2(1.67546, 1.7037)
+scale = Vector2(2.2588, 2.59259)
 texture = ExtResource("2_n1go6")
 
 [node name="Trees" type="Node2D" parent="."]
@@ -101,6 +101,9 @@ texture = SubResource("AtlasTexture_gnd4v")
 
 [node name="Graves" parent="." instance=ExtResource("4_sq4bw")]
 position = Vector2(200, -328)
+
+[node name="GraveSprite" parent="Graves" index="0"]
+material = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.6, 0.6)
@@ -197,3 +200,5 @@ texture = SubResource("AtlasTexture_gnd4v")
 [connection signal="start_game" from="UI" to="." method="_on_ui_start_game"]
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="gem_collected" from="Player" to="." method="_on_player_gem_collected"]
+
+[editable path="Graves"]
