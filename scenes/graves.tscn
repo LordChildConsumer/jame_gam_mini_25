@@ -6,33 +6,34 @@
 [ext_resource type="AudioStream" uid="uid://jthrewsh1n76" path="res://SFX/shovel_sound.mp3" id="2_2jgpt"]
 [ext_resource type="Texture2D" uid="uid://bnoopd8pj7cgb" path="res://platformPack_item008.png" id="5_e5u8c"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_alodt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtydh"]
 shader = ExtResource("1_ih13k")
-shader_parameter/progress = 0.0
+shader_parameter/progress = 0.3
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n7yy0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxr4t"]
 atlas = ExtResource("1_m73t6")
 region = Rect2(290, 59, 205, 164)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4t4kh"]
 radius = 56.0
-height = 160.0
+height = 112.0
 
 [sub_resource type="Gradient" id="Gradient_ld2uk"]
 colors = PackedColorArray(0.422008, 0.164812, 0.133035, 1, 0.931913, 0.809141, 0.985966, 1)
 
 [node name="Graves" type="StaticBody2D" groups=["grave"]]
+z_index = -6
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_l8ryq")
 
 [node name="GraveSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_alodt")
+material = SubResource("ShaderMaterial_rtydh")
 position = Vector2(24, 0)
-texture = SubResource("AtlasTexture_n7yy0")
+texture = SubResource("AtlasTexture_oxr4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-16, 0)
+position = Vector2(-16, -8)
 shape = SubResource("CapsuleShape2D_4t4kh")
 
 [node name="shovel_sound" type="AudioStreamPlayer2D" parent="."]

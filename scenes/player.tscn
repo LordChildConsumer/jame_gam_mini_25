@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://byucq52d1ot21"]
+[gd_scene load_steps=15 format=3 uid="uid://byucq52d1ot21"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_rybxp"]
 [ext_resource type="Texture2D" uid="uid://d3sragkpas1r8" path="res://Tiny Bard Art/Characters 254px.png" id="2_1rt15"]
+[ext_resource type="Texture2D" uid="uid://cfbkieq68a848" path="res://Tiny Bard Art/Circle.png" id="2_076rw"]
 [ext_resource type="AudioStream" uid="uid://ktavod6n3an8" path="res://SFX/old_man_laugh.wav" id="3_v5vnw"]
 [ext_resource type="AudioStream" uid="uid://ca84ax41m7jfg" path="res://SFX/zapsplat_multimedia_game_sound_coin_collect_classic_ching_003_112220.mp3" id="4_1m76f"]
 
@@ -77,6 +78,12 @@ height = 214.0
 visible = false
 collision_mask = 7
 script = ExtResource("1_rybxp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.533333)
+position = Vector2(-5, 111)
+scale = Vector2(0.335938, 0.09375)
+texture = ExtResource("2_076rw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-16, 0)

@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://v8lfls2vndql"]
+
+[ext_resource type="Script" path="res://scripts/graves.gd" id="1_l27vf"]
+[ext_resource type="Shader" path="res://scripts/graves.gdshader" id="2_qa5it"]
+[ext_resource type="AudioStream" uid="uid://jthrewsh1n76" path="res://SFX/shovel_sound.mp3" id="3_pstqd"]
+[ext_resource type="Texture2D" uid="uid://bnoopd8pj7cgb" path="res://platformPack_item008.png" id="4_tcwu7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtydh"]
+shader = ExtResource("2_qa5it")
+shader_parameter/progress = 0.3
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b7no0"]
+load_path = "res://.godot/imported/Background 254px.png-8bd7145673ffb3b779ec1edfdb06b872.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4072"]
+atlas = SubResource("CompressedTexture2D_b7no0")
+region = Rect2(554, 33, 156, 199)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4t4kh"]
+radius = 40.0
+height = 128.0
+
+[sub_resource type="Gradient" id="Gradient_ld2uk"]
+colors = PackedColorArray(0.422008, 0.164812, 0.133035, 1, 0.931913, 0.809141, 0.985966, 1)
+
+[node name="Grave_3" type="StaticBody2D" groups=["grave"]]
+z_index = -6
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_l27vf")
+
+[node name="GraveSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_rtydh")
+position = Vector2(-8, 16)
+texture = SubResource("AtlasTexture_a4072")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, -8)
+shape = SubResource("CapsuleShape2D_4t4kh")
+
+[node name="shovel_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_pstqd")
+
+[node name="DirtParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-16, -40)
+emitting = false
+amount = 50
+lifetime = 0.5
+texture = ExtResource("4_tcwu7")
+emission_shape = 2
+emission_sphere_radius = 45.0
+direction = Vector2(0, 0)
+spread = 5.0
+gravity = Vector2(0, 150)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 0.25
+color = Color(0.260207, 0.0647207, 0.0300678, 1)
+color_ramp = SubResource("Gradient_ld2uk")

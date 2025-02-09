@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float progress : hint_range(0.0, 1.0); // Controls the reveal effect
+uniform float progress : hint_range(0.0, 0.3); // Controls the reveal effect
 
 void fragment() {
     vec2 uv = UV;

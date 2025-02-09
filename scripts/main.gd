@@ -5,6 +5,8 @@ extends Node2D
 @onready var purple_mob_scene : PackedScene = preload("res://scenes/purple_mob.tscn")
 @onready var gem_scene : PackedScene = preload("res://scenes/score_sprite.tscn")
 @onready var grave_scene : PackedScene = preload("res://scenes/graves.tscn")
+@onready var grave_scene_2 : PackedScene = preload("res://scenes/grave_2.tscn")
+@onready var grave_scene_3 : PackedScene = preload("res://scenes/grave_3.tscn")
 
 @onready var score_timer : Timer = $ScoreTimer
 @onready var green_mob_timer : Timer = $GreenMobTimer
@@ -48,7 +50,8 @@ func new_game() -> void:
 	hud.show_message("Get Ready")
 	await get_tree().create_timer(1).timeout
 	hud.show_message("GO!")
-
+	if get_tree().get_nodes_in_group("grave").size() == 0:
+		spawn_grave()
 
 func _on_start_timer_timeout() -> void:
 	green_mob_timer.wait_time = 3
@@ -79,7 +82,7 @@ func _on_score_timer_timeout() -> void:
 		spawn_grave()
 	if score == 40:
 		green_mob_timer.wait_time = 1.5
-		yellow_mob_timer.wait_time = 1.9
+		yellow_mob_timer.wait_time = 2.3
 		purple_mob_timer.wait_time = 2.5
 		gem_spawn_timer.wait_time = 2
 		spawn_grave()
@@ -151,19 +154,33 @@ func _on_purple_mobtimer_timeout() -> void:
 func _on_gem_spawn_timer_timeout() -> void:
 	var x = randf_range(-screen_size.x / 2 + 100, screen_size.x / 2 - 100)
 	var y = randf_range(-screen_size.y / 2 + 100, screen_size.y / 2 - 100)
-	print("screen size: ", screen_size)
 	var gem = gem_scene.instantiate()
 	add_child(gem)
+	gem.get_node("Gem").hide()
+	gem.get_node("Orb").hide()
+	
+	var gem_choice = randi_range(0,3)
+	if gem_choice == 3:
+		gem.get_node("Orb").show()
+		gem.is_orb = true
+	else:
+		gem.get_node("Gem").show()
+		
 	
 	gem.global_position = Vector2(x,y)
-	print("spawn position: ", gem.global_position)
 	
 
 func spawn_grave() -> void:
 	var x = randf_range(-screen_size.x / 2 + 100, screen_size.x / 2 - 100)
 	var y = randf_range(-screen_size.y / 2 + 100, screen_size.y / 2 - 100)
-	print("screen size: ", screen_size)
-	var grave = grave_scene.instantiate()
+	var grave_choice = randi_range(0, 2)
+	var grave
+	if grave_choice == 0:
+		grave = grave_scene.instantiate()
+	elif grave_choice == 1:
+		grave = grave_scene_2.instantiate()
+	elif grave_choice == 2:
+		grave = grave_scene_3.instantiate()
 	add_child(grave)
 	
 	# Duplicate the shader material so it's unique to this grave
@@ -172,10 +189,7 @@ func spawn_grave() -> void:
 	grave.grave_material = new_material
 	
 	grave.global_position = Vector2(x,y)
-	print("spawn position: ", grave.global_position)
 	grave.appear_from_ground()
-	
-	
 
 
 func _on_ui_start_game() -> void:

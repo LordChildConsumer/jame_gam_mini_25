@@ -66,7 +66,10 @@ func _on_laugh_timer_timeout() -> void:
 
 func _on_death_collider_area_entered(area: Area2D) -> void:
 	if area.is_in_group("gem"):
-		print("gem!")
+		if(area.is_orb):
+			$GemCollectedSFX.play()
+			gem_collected.emit()
+			gem_collected.emit()
 		gem_collected.emit()
 		$GemCollectedSFX.play()
 		area.queue_free()

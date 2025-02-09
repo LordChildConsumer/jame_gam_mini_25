@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://brpjuiyestnub"]
+[gd_scene load_steps=11 format=3 uid="uid://brpjuiyestnub"]
 
 [ext_resource type="Texture2D" uid="uid://buikonxljpwws" path="res://Tiny Bard Art/Collectibles.PNG" id="1_5qd3x"]
+[ext_resource type="Script" path="res://scenes/score_sprite.gd" id="1_ehy6n"]
+[ext_resource type="Texture2D" uid="uid://cfbkieq68a848" path="res://Tiny Bard Art/Circle.png" id="1_lh1gd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hj2p"]
 atlas = ExtResource("1_5qd3x")
@@ -24,18 +26,57 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3inw4"]
+atlas = ExtResource("1_5qd3x")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okem5"]
+atlas = ExtResource("1_5qd3x")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ht8cx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3inw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okem5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_lgdpg"]
 radius = 24.0
 
 [node name="Gem" type="Area2D" groups=["gem"]]
+z_index = -5
+scale = Vector2(1.25, 1.25)
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("1_ehy6n")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.333333)
+position = Vector2(2.38419e-07, 27)
+scale = Vector2(0.128906, 0.0507813)
+texture = ExtResource("1_lh1gd")
+
+[node name="Gem" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_t1ow5")
 autoplay = "default"
-frame_progress = 0.354471
+frame_progress = 0.0463855
+
+[node name="Orb" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(0.9, 0.9)
+sprite_frames = SubResource("SpriteFrames_ht8cx")
+autoplay = "default"
+frame_progress = 0.0384565
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lgdpg")
